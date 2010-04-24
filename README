@@ -1,0 +1,4 @@
+MoneyStew is a money managment application that runs in a browser
+
+There is no configuration and the couchdb views need to be setup in the database. 
+

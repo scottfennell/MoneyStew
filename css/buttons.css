@@ -1,0 +1,29 @@
+/* 
+    Document   : buttons
+    Created on : Apr 17, 2010, 12:23:02 AM
+    Author     : stillboy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+.icon-grid {
+    background-image:url(../js/ext/examples/shared/icons/fam/grid.png) !important;
+}
+.add {
+    background-image:url(../js/ext/examples/shared/icons/fam/add.gif) !important;
+}
+.option {
+    background-image:url(../js/ext/examples/shared/icons/fam/plugin.gif) !important;
+}
+.remove {
+    background-image:url(../js/ext/examples/shared/icons/fam/delete.gif) !important;
+}
+.save {
+    background-image:url(../js/ext/examples/shared/icons/save.gif) !important;
+}
