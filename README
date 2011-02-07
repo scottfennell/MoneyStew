@@ -2,3 +2,18 @@ MoneyStew is a money managment application that runs in a browser
 
 There is no configuration and the couchdb views need to be setup in the database. 
 
+Here is the view code that needs to be added to the CouchDB dbS
+
+{
+   "_id": "_design/moneystew",
+   "_rev": "4-a65dc66ed6610c1dbbf5c671ef5f86d7",
+   "language": "javascript",
+   "views": {
+       "all": {
+           "map": "function(doc) {\nif(doc.type) emit(doc._id, doc)\n}"
+       },
+       "ledger": {
+           "map": "function(doc) {\nif(doc.type && doc.type =='Ledger') emit(doc._id, doc)\n}"
+       }
+   }
+}
