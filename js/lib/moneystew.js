@@ -56,13 +56,15 @@ MS.APP = Ext.extend(Ext.util.Observable, {
         this.viewport.on('nav',this.dispatch, this);
         this.store = new Ext.ux.data.CouchStore({
             db:    'moneystew',
-            view:  '_design/moneystew/all',
+			design:	'_design/moneystew',
+            view:  'all',
             fields:this.schema.fields
         });
         this.store.load({});
 	this.ledgerStore = new Ext.ux.data.CouchStore({
             db:    'moneystew',
-            view:  '_design/moneystew/ledger',
+			design:	'_design/moneystew',
+            view:  'ledger',
             fields:this.ledgerschema.fields
         });
 	this.ledgerStore.load({});

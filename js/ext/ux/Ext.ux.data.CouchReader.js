@@ -139,7 +139,7 @@ Ext.extend(Ext.ux.data.CouchReader, Ext.data.JsonReader, {
 });
 
 Ext.ux.data.CouchStore = function(c) {
-  var url = (c.url === undefined || c.url === null) ? '/'+c.db+'/_view/'+c.view : c.url;
+  var url = (c.url === undefined || c.url === null) ? '/'+c.db+'/'+c.design+'/_view/'+c.view : c.url;
   c = Ext.apply(c,{
     root: 'rows',
     totalProperty: 'total_rows',
