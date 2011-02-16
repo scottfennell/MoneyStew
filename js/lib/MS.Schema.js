@@ -146,71 +146,72 @@ MS.Schema = new Ext.extend(Ext.util.Observable,{
     currentRecord : null,
 
     constructor: function(config){
-	Ext.apply(this,config||{});
-	MS.Schema.superclass.constructor.apply(this,arguments);
-	this.addEvents({
-            "close" : true,
-	    "open"  : true,
-	    "schemaupdate": true
-        });
-	this.fieldstore = new Ext.data.JsonStore({
-	    fields: ['name','type'],
-	    data : this.elements // from states.js
-	});
-
-	this.formStore =  new Ext.ux.data.CouchStore({
-            db:    'moneystew',
-            view:  'all/forms',
-            fields:[
-                {name: '_id'},  // I'd love to get rid of this as well
-                {name: '_rev'},  // ditto
-                {name: 'name'},
-		{name: 'type'},
-		{name: 'items'}
-	    ]
-        });
-        this.formStore.load({});
-	console.log(this.formStore);
-	this.currentForm = new Ext.data.JsonStore({
-	    fields: ['name','fieldLabel','type'],
-	    data: this.currentSchema
-	})
-
-	this.ledgerStore = new Ext.ux.data.CouchStore({
-	    db:    'moneystew',
-            view:  'all/ledger',
-            fields:[
-                {name: '_id'},  // I'd love to get rid of this as well
-                {name: '_rev'},  // ditto
-                {name: 'date'},
-		{name: 'name'},
-		{name: 'amount'},
-		{name: 'type'}
-	    ]
-	})
+		Ext.apply(this,config||{});
+		MS.Schema.superclass.constructor.apply(this,arguments);
+		this.addEvents({
+	        "close" : true,
+		    "open"  : true,
+		    "schemaupdate": true
+	    });
+		this.fieldstore = new Ext.data.JsonStore({
+		    fields: ['name','type'],
+		    data : this.elements // from states.js
+		});
+	
+		this.formStore =  new Ext.ux.data.CouchStore({
+	        db:    'moneystew',
+	        view:  'all/forms',
+	        fields:[
+	            {name: '_id'},  // I'd love to get rid of this as well
+	            {name: '_rev'},  // ditto
+	            {name: 'name'},
+				{name: 'type'},
+				{name: 'items'}
+	    	]
+	    });
+    
+		this.formStore.load({});
+		console.log(this.formStore);
+		this.currentForm = new Ext.data.JsonStore({
+		    fields: ['name','fieldLabel','type'],
+		    data: this.currentSchema
+		})
+	
+		this.ledgerStore = new Ext.ux.data.CouchStore({
+		    db:    'moneystew',
+	        view:  'all/ledger',
+	        fields:[
+	            {name: '_id'},  // I'd love to get rid of this as well
+	            {name: '_rev'},  // ditto
+	            {name: 'date'},
+				{name: 'name'},
+				{name: 'amount'},
+				{name: 'type'}
+		    ]
+		})
 
     },
 
     viewForms: function(){
-	//Use the currnet schema to display the form ...
-	console.log(this.formStore);
-	var listView = new Ext.list.ListView({
-	    store: this.formStore,
-	    multiSelect: false,
-	    emptyText: 'Nothing here',
-	    reserveScrollOffset: true,
-	    columns: [{
-		header: 'Name',
-		width: .5,
-		dataIndex: 'name'
-	    }
-	    ,{
-		header: 'Items',
-		width: .5,
-		dataIndex: 'items',
-		tpl: '<tpl for="items">{name}, </tpl>'
-	    }
-	    ]
+		//Use the currnet schema to display the form ...
+		console.log(this.formStore);
+		var listView = new Ext.list.ListView({
+	    	store: this.formStore,
+	    	multiSelect: false,
+	    	emptyText: 'Nothing here',
+	    	reserveScrollOffset: true,
+	    	columns: [
+				{
+					header: 'Name',
+					width: .5,
+					dataIndex: 'name'
+			    },{
+					header: 'Items',
+					width: .5,
+					dataIndex: 'items',
+					tpl: '<tpl for="items">{name}, </tpl>'
+			    }
+		    ]
 	});
 
 	var panel = new Ext.Panel({
@@ -219,15 +220,15 @@ MS.Schema = new Ext.extend(Ext.util.Observable,{
 	    title:'Simple ListView (0 items selected)',
 	    items: listView,
 	    tbar:[
-		{
-		    text:"Add new type",
-		    listeners:{
-			'click':{
-			    fn:this.createNew,
-			    scope:this
+			{
+			    text:"Add new type",
+			    listeners:{
+					'click':{
+					    fn:this.createNew,
+					    scope:this
+					}
+			    }
 			}
-		    }
-		}
 	    ]
 	});
 	listView.on('click',this.setCurrentSchema,this);
@@ -236,11 +237,11 @@ MS.Schema = new Ext.extend(Ext.util.Observable,{
     },
 
     setCurrentSchema: function(dataview, idx, node, e){
-	var rec = dataview.getRecord(node);
-	this.currentForm.loadData(rec.data.items);
-	this.currentSchema = rec.data.items;
-	this.currentRecord = rec;
-	this.showSchema();
+		var rec = dataview.getRecord(node);
+		this.currentForm.loadData(rec.data.items);
+		this.currentSchema = rec.data.items;
+		this.currentRecord = rec;
+		this.showSchema();
     },
 
     addWindow: function(){

@@ -24,7 +24,7 @@ Ext.ux.CrudPanel = function(config){
 	    items:[form]
 	});
 	this.currentWindow.show();
-	form.on('save', this.saveAfterEdit, this)
+		form.on('save', this.saveAfterEdit, this)
     }
 
     this.addFormClick = function(){
@@ -36,41 +36,42 @@ Ext.ux.CrudPanel = function(config){
 	    title: 'Add Item',
 	    items:[form]
 	});
+	
 	this.currentWindow.show();
-	form.on('save', this.saveAfterAdd, this)
+		form.on('save', this.saveAfterAdd, this)
     }
 
     this.saveAfterEdit = function(data){
-	//record should be updated
-	this.completeEditAdd();
+		//record should be updated
+		this.completeEditAdd();
     }
 
     this.saveAfterAdd = function(data){
-	var x = new this.store.record(data);
-	this.store.add(x);
-	this.completeEditAdd();
+		var x = new this.store.record(data);
+		this.store.add(x);
+		this.completeEditAdd();
     }
 
     this.completeEditAdd = function(){
-	this.store.commitChanges();
-	if(this.currentWindow){
-	    this.currentWindow.destroy();
-	}
+		this.store.commitChanges();
+		if(this.currentWindow){
+		    this.currentWindow.destroy();
+		}
     }
 
 
     this.sm = new Ext.grid.CheckboxSelectionModel({
-	listeners: {
-	    // On selection change, set enabled state of the removeButton
-	    // which was placed into the GridPanel using the ref config
-	    selectionchange: function(sm) {
-		if (sm.getCount()) {
-		    sm.grid.removeButton.enable();
-		} else {
-		    sm.grid.removeButton.disable();
+		listeners: {
+		    // On selection change, set enabled state of the removeButton
+		    // which was placed into the GridPanel using the ref config
+		    selectionchange: function(sm) {
+			if (sm.getCount()) {
+			    sm.grid.removeButton.enable();
+			} else {
+			    sm.grid.removeButton.disable();
+			}
+		    }
 		}
-	    }
-	}
     });
 
     var cols = [this.sm];
