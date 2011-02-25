@@ -17,6 +17,9 @@ Handle application wide settings, such as layout and
 """
 class AppController(webapp.RequestHandler):
     
+    def get(self):
+        self.render("")
+    
     def renderTemplate(self, template_name, values):
         
         path = os.path.join(os.path.dirname(__file__), "templates", template_name)
@@ -67,3 +70,14 @@ class AppController(webapp.RequestHandler):
         pp = pprint.PrettyPrinter(indent=4,stream=self.response.out)
         pp.pprint( out )
         self.response.out.write("</pre>");
+        
+application = webapp.WSGIApplication([('/', AppController)], debug=True)
+
+def main():
+    run_wsgi_app(application)
+
+def poo():
+    print "poo"
+
+if __name__ == "__main__":
+    main()

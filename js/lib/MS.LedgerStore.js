@@ -22,7 +22,7 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 			}, [
 				{name:	"id"},
 				{name: 	"name"},
-				{name:	"start_date", mapping:"start_date.isoformat", type:"date", dateFormat:"Y-m-d"},
+				{name:	"start_date", mapping:"start_date", type:"date", dateFormat:"Y-m-d"},
 				{name:	"repeat"},//Monthly, Daily, Yearly, Weekly
 				{name:	"repeat_amount"}, //Every repeat amount repeat
 				{name:	"amount"},

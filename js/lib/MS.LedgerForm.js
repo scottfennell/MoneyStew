@@ -8,11 +8,7 @@ MS.LedgerForm = function(config){
     this.frame = true;
     this.border = true;
     this.items = [
-	    {
-			xtype:	'hidden',
-			name:	'type',
-			value:	'Ledger'
-	    },{
+		{
 			xtype:	'textfield',
 			name:	'name',
 			fieldLabel: 'Name'
@@ -51,9 +47,7 @@ MS.LedgerForm = function(config){
 			name: 'type',
 			fieldLabel: "Type",
 			editable: false,
-			disableKeyFilter: true,
 			forceSelection: true,
-			emptyText: '--select one--',
 			triggerAction: 'all',
 			mode: 'local',
 			store: new Ext.data.ArrayStore({
@@ -84,7 +78,7 @@ MS.LedgerForm = function(config){
 	this.submitForm = function(b,e){
 		var form = this.getForm();
 		var data = this.form.getValues();		
-		console.log(data)
+		console.log("submitted data from the form",data)
 		if(this.record){
 		    Ext.apply(this.record.data, data);
 		    this.record.markDirty();

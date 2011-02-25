@@ -13,5 +13,5 @@ handlers:
 - url: /test/.*
   script: test.py
 - url: /.*
-  script: asklogin.py
+  script: app.py
 

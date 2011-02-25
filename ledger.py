@@ -12,19 +12,19 @@ from ledger_model import Ledger
 
 class JsonStore(webapp.RequestHandler):
     
-    timeFormats = ("%Y-%m-%dT%H:%M:%S", "%m/%d/%Y", "%m-%d-%Y")
+    timeFormats = ("%Y-%m-%dT%H:%M:%S", "%m/%d/%Y")
     
     def parseDate(self, dateString):
         dateObj = None
-        for format in self.timeFormats:
-            
-            try:
-                dateObj = date.strptime( dateString , format )
-                break
-            except:
-                continue
-
-        return dateObj
+        datePieces = dateString.split("/")
+        if(len(datePieces)>1):
+            dateObj = datetime.strptime(dateString, self.timeFormats[1])
+        else:
+            dateObj = datetime.strptime(dateString, self.timeFormats[0])
+        if dateObj:
+            return dateObj.date()
+        else:
+            return None
     
     def get(self,args=""):
         user = users.get_current_user()
@@ -85,7 +85,7 @@ class JsonStore(webapp.RequestHandler):
                 #{"data":{"id":14,"name":"monthtest","start_date.isoformat":"2003-01-02T00:00:00","repeat":"Monthly","repeat_amount":"1","amount":"22"}}
                 jsonData = data['data'];
                 ledgerItem.name = jsonData.get('name',ledgerItem.name)
-                ledgerItem.start_date = self.parseDate(jsonData.get('start_date.isoformat', '01/01/2000')) 
+                ledgerItem.start_date = self.parseDate(jsonData.get('start_date', '01/01/2000')) 
                 ledgerItem.repeat = jsonData.get('repeat',ledgerItem.repeat)
                 ledgerItem.repeat_amount = int( jsonData.get('repeat_amount', ledgerItem.repeat_amount) )
                 ledgerItem.amount = float( jsonData.get('amount',ledgerItem.amount))

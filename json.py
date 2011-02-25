@@ -73,16 +73,7 @@ class GqlEncoder(simplejson.JSONEncoder):
       return output
     
     elif isinstance(obj, datetime.date):
-        output = {}
-        fields = ['day', 'month', 'year']
-        methods = ['ctime', 'isocalendar', 'isoformat', 'isoweekday',
-            'timetuple']
-        for field in fields:
-          output[field] = getattr(obj, field)
-        for method in methods:
-          output[method] = getattr(obj, method)()
-        output['epoch'] = time.mktime(obj.timetuple())
-        return output
+        return getattr(obj,'isoformat')()
         
 
     elif isinstance(obj, time.struct_time):
