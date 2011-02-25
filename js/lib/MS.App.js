@@ -1,64 +1,5 @@
 Ext.ns("MS");
 MS.App = Ext.extend(Ext.util.Observable, {
-
-    schema: {
-        fields: [{
-            name: '_id'
-        }, // I'd love to get rid of this as well
-        {
-            name: '_rev'
-        }, // ditto
-        {
-            name: 'location'
-        }, {
-            name: 'address'
-        }, {
-            name: 'latitude',
-            type: 'float'
-        }, {
-            name: 'longitude',
-            type: 'float'
-        }],
-        grid: [{
-            header: 'Location',
-            width: 200,
-            sortable: true,
-            dataIndex: 'location'
-        },        //{header: 'Address', renderer: Ext.util.Format.usMoney, dataIndex: 'address'},
-        {
-            header: 'Address',
-            dataIndex: 'address'
-        }, {
-            header: 'Lat',
-            dataIndex: 'latitude'
-        }, {
-            header: 'Lon',
-            dataIndex: 'longitude'
-        }, ]
-    },
-    
-    ledgerschema: {
-        fields: [{
-            name: '_id'
-        }, // I'd love to get rid of this as well
-        {
-            name: '_rev'
-        }, // ditto
-        {
-            name: 'amount',
-            type: "float"
-        }, {
-            name: 'day'
-        }, {
-            name: 'name'
-        }, {
-            name: 'repeat'
-        }, {
-            name: 'type'
-        }, ]
-    
-    },
-    
     
     windowDefault: {
         width: 400,
@@ -80,40 +21,9 @@ MS.App = Ext.extend(Ext.util.Observable, {
     start: function(){
         //this.viewport = new Ext.Viewport(MS.viewport);
         this.viewport = new MS.viewport();
-        this.viewport.on('nav', this.dispatch, this);
-        
-		this.store = new Ext.data.JsonStore({
-			url: "/json/items",
-			fields: [{
-	            name: 'id'
-	        }, 
-	        {
-	            name: '_rev'
-	        }, // ditto
-	        {
-	            name: 'location'
-	        }, {
-	            name: 'address'
-	        }, {
-	            name: 'latitude',
-	            type: 'float'
-	        }, {
-	            name: 'longitude',
-	            type: 'float'
-	        }]
-			
-		});
-			
-		new Ext.ux.data.CouchStore({
-            db: 'moneystew',
-            design: '_design/moneystew',
-            view: 'all',
-            fields: this.schema.fields
-        });
-		
-        this.store.load({});
+        this.viewport.on('nav', this.dispatch, this);	
 		this.ledgerStore = new MS.LedgerStore();
-        this.ledgerStore.load({});
+        this.ledgerStore.load();
         this.initModules();
         this.dispatchAction('Ledger', 'ledgerPanel');
     },
@@ -127,19 +37,22 @@ MS.App = Ext.extend(Ext.util.Observable, {
         //this.Schema = new MS.Schema({parent:this});
     },
     dispatchAction: function(module, action){
+		console.log("dispatch",module, action);
         if (this[module] && this[module][action]) {
             this[module][action]();
-        }
-        else {
+        } else {
             this.log("Module or action not defined");
         }
     },
+	
     dispatch: function(node){
         this.dispatchAction(node.module, node.action)
     },
+	
     log: function(){
         console.log(arguments);
     },
+	
     addTab: function(panel){
         this.log(panel);
         var id = "Tab-" + this.tabid;

@@ -4,10 +4,14 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /stylesheets
-  static_dir: stylesheets
+- url: /css
+  static_dir: css
 - url: /js
   static_dir: js
+- url: /ledger/json.*
+  script: ledger.py
+- url: /test/.*
+  script: test.py
 - url: /.*
   script: asklogin.py
 

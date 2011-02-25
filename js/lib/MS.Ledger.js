@@ -1,7 +1,7 @@
 //
 Ext.ux.grid.GroupSummary.Calculations['totalCost'] = function(v, record, field){
-    return v + (record.data.estimate * record.data.rate);
-};
+    	return v + (record.data.estimate * record.data.rate);
+	};
 
 MS.Ledger = new Ext.extend(Ext.util.Observable,{
     gridCfg:[
@@ -22,12 +22,12 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
     showList: function(){
 		this.panel = new Ext.ux.CrudPanel({
 		    columns:[
-			{header: 'Day', dataIndex:'day', width:10},
-			//{header: 'Address', renderer: Ext.util.Format.usMoney, dataIndex: 'address'},
-			{header: 'Name', dataIndex: 'name', width:40},
-			{header: 'Repeat', dataIndex: 'repeat',width:20},
-			{header: 'Type', dataIndex: 'type', width:20},
-			{header: 'Amount', dataIndex: 'amount', width:20}
+				{header: 'Start Date', dataIndex:'start_date', width:10, renderer: Ext.util.Format.dateRenderer('m-d-Y')},
+				//{header: 'Address', renderer: Ext.util.Format.usMoney, dataIndex: 'address'},
+				{header: 'Name', dataIndex: 'name', width:40},
+				{header: 'Repeat', dataIndex: 'repeat',width:20},
+				//{header: 'Type', dataIndex: 'type', width:20},
+				{header: 'Amount', dataIndex: 'amount', width:20}
 		    ],
 		    store:this.store,
 		    form:MS.LedgerForm
@@ -40,8 +40,8 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 
 		if(this.store){
 		    this.datedata = new MS.LedgerSchedule({
-			pstore:this.store
-		    })
+				pstore:this.store
+		    });
 		}	
 	
 		var summary = new Ext.ux.grid.GroupSummary();

@@ -3,9 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Money Stew</title>
-{% for scrpt in scripts_for_layout %}
+	<link rel="stylesheet" type="text/css" href="/js/ext/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="/css/buttons.css" />
+	{% for scrpt in scripts_for_layout %}
 	<script src="{{ scrpt }}" type="text/javascript" charset="utf-8"></script>
-{% endfor %}
+	{% endfor %}
 </head>
 <body>
 {{content_for_layout}}

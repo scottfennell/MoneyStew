@@ -10,34 +10,34 @@
 Ext.ux.CrudPanel = function(config){
 
     Ext.apply(this,config||{});
-
+	this.seq = 100;
     this.editFormClick = function(b,e){	
-	var rec = this.selModel.getSelected();
-	var form = new this.form({
-	    record: rec
-	});
-	this.currentWindow = new Ext.Window({
-	    width:400,
-	    height:300,
-	    layout:'fit',
-	    title: 'Edit Item',
-	    items:[form]
-	});
-	this.currentWindow.show();
+		var rec = this.selModel.getSelected();
+		var form = new this.form({
+		    record: rec
+		});
+		this.currentWindow = new Ext.Window({
+		    width:400,
+		    height:300,
+		    layout:'fit',
+		    title: 'Edit Item',
+		    items:[form]
+		});
+		this.currentWindow.show();
 		form.on('save', this.saveAfterEdit, this)
     }
 
     this.addFormClick = function(){
-	var form = new this.form();
-	this.currentWindow = new Ext.Window({
-	    width:400,
-	    height:300,
-	    layout:'fit',
-	    title: 'Add Item',
-	    items:[form]
-	});
+		var form = new this.form();
+		this.currentWindow = new Ext.Window({
+		    width:400,
+		    height:300,
+		    layout:'fit',
+		    title: 'Add Item',
+		    items:[form]
+		});
 	
-	this.currentWindow.show();
+		this.currentWindow.show();
 		form.on('save', this.saveAfterAdd, this)
     }
 
@@ -47,8 +47,11 @@ Ext.ux.CrudPanel = function(config){
     }
 
     this.saveAfterAdd = function(data){
-		var x = new this.store.record(data);
+		this.seq++;
+		var x = new this.store.recordType(data);//,this.seq);
 		this.store.add(x);
+//		x.commit();
+//		x.markDirty();
 		this.completeEditAdd();
     }
 
@@ -124,14 +127,14 @@ Ext.ux.CrudPanel = function(config){
 	}];
 
     this.viewConfig = {
-	forceFit:true
+		forceFit:true
     };
 
     //Overridable config options
     Ext.applyIf(this, {
-	title:		'CrudPanel',
-	singleSelect:	true,
-	columnLines:	true
+		title:		'CrudPanel',
+		singleSelect:	true,
+		columnLines:	true
     });
 
     Ext.ux.CrudPanel.superclass.constructor.apply(this,arguments);

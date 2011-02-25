@@ -1,0 +1,24 @@
+<html>
+	<head></head>
+	<body>
+    {% for l in ledgers %}
+	<div>
+		<ul>
+			<li>{{ l.name }}</li>
+			<li>{{ l.start_date|date:"D d M Y" }}</li>
+			<li>{{ l.repeat }}</li>
+			<li>{{ l.repeat_amount }}</li>
+		</ul
+	</div>
+	{% endfor %}
+	<form action="/test/post" method="post">
+		name <input name="name" cols="20" /><br/>
+		date <input name="start_date" cols="20" /><br/>
+		repeat <input name="repeat" cols="20" /><br/>
+		repeat amount <input name="repeat_amount" cols="20" /><br/>
+      	<input type="submit" value="Save">
+    </form>
+
+    <a href="{{ url }}">{{ url_linktext }}</a>
+	</body>
+</html>
