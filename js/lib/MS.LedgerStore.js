@@ -26,7 +26,8 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 				{name:	"repeat"},//Monthly, Daily, Yearly, Weekly
 				{name:	"repeat_amount"}, //Every repeat amount repeat
 				{name:	"amount"},
-				{name:	"type", mapping:"type"}
+				{name:	"type", mapping:"type"},
+				{name:	"note"}
 			]
 		);
 		
@@ -63,7 +64,6 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 	},
 	
 	commitChanges: function(){
-		console.log("Committing");
 		MS.LedgerStore.superclass.commitChanges.apply(this,arguments);
 	}
 	
@@ -71,7 +71,6 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 
 MS.JsonReader = Ext.extend(Ext.data.JsonReader,{
 	readResponse: function(action, response){
-		console.log("Action");
 		MS.JsonReader.superclass.readResponse.apply(this,arguments);
 	}
 })

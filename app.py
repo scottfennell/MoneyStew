@@ -38,7 +38,8 @@ class AppController(webapp.RequestHandler):
             "/js/ext/ext-all-debug.js",
             "/js/ext/ux/Ext.ux.data.CouchReader.js",
             "/js/ext/examples/ux/CheckColumn.js",
-            "/js/ext/examples/ux/GroupSummary.js"
+            "/js/ext/examples/ux/GroupSummary.js",
+            "/js/ext/ux/Ext.ux.grid.RowActions.js"
         ]
         path = os.path.join(os.path.dirname(__file__), "js/lib")
         #Path to js_files symlink ... this might be easier to just manually manage
