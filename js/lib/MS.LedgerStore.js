@@ -70,6 +70,7 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 
 MS.JsonReader = Ext.extend(Ext.data.JsonReader,{
 	readResponse: function(action, response){
+		console.log(response)
 		return MS.JsonReader.superclass.readResponse.apply(this,arguments);
 	}
 })

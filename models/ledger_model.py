@@ -14,3 +14,4 @@ class Ledger(db.Model):
     repeat_amount = db.IntegerProperty()
     amount = db.FloatProperty()
     type = db.StringProperty()
+    note = db.StringProperty(multiline=True)

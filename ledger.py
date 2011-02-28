@@ -8,6 +8,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 from datetime import date, time, datetime
 import json
+import logging
 from ledger_model import Ledger
 
 class JsonStore(webapp.RequestHandler):
@@ -63,7 +64,8 @@ class JsonStore(webapp.RequestHandler):
                 repeat = new_ledger['repeat'],
                 repeat_amount = int(new_ledger['repeat_amount']),
                 amount = float(new_ledger.get('amount', 0.0)),
-                type = new_ledger.get('type', "")
+                type = new_ledger.get('type', ""),
+                note = new_ledger.get('note', "")
             )
             item.put()
             #item.key = item.key().id()
@@ -90,6 +92,7 @@ class JsonStore(webapp.RequestHandler):
                 ledgerItem.repeat_amount = int( jsonData.get('repeat_amount', ledgerItem.repeat_amount) )
                 ledgerItem.amount = float( jsonData.get('amount',ledgerItem.amount))
                 ledgerItem.type = jsonData.get('type', "")
+                ledgerItem.note = jsonData.get('note', "")
                 
                 ledgerItem.put()
                 
@@ -131,6 +134,7 @@ application = webapp.WSGIApplication([
 
 
 def main():
+    logging.getLogger().setLevel(logging.DEBUG)
     run_wsgi_app(application)
 
 if __name__ == "__main__":

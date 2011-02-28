@@ -94,7 +94,6 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 						this.store.remove(ledgerRecord);
 					}
 				}
-				
 			}
 				
 		}, this)
@@ -130,11 +129,8 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 	                   allowBlank: false
 	                }),
 					renderer: function(value, metaData, record, rowIndex, colIndex, store) {
-						console.log(record);
-				      if(record.data.note != ""){
-					  	return value+"<br/>"+record.data.note;
-					  }
-				      return value;
+					  	var notetext = record.data.note || "";
+					  	return "<b>"+value+"</b><br/><div class='small-text'>"+notetext+"</div>";
 				   }
 	            },{
 	                header: 'Month',
@@ -230,7 +226,8 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 		    clicksToEdit: 1,
 		    trackMouseOver: false,
 		    //enableColumnMove: false,
-		    title: 'Ledger'
+		    title: 'Transactions',
+			closable: false
 		});
 		
 		this.ledgerpanelgrid = pan;
