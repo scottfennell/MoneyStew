@@ -17,32 +17,44 @@ MS.LedgerForm = function(config){
 			name:	'start_date',
 			fieldLabel: 'Start Date'
 		},{
-			xtype: 'numberfield',
-			name:	'repeat_amount',
-			fieldLabel: 'Repeat'
-	    },{//http://thelampposts.blogspot.com/2008/04/creating-basic-select-box-in-extjs.html
-			xtype:'combo',
-			name: 'repeat',
-			fieldLabel: "Every",
-			editable: false,
-			disableKeyFilter: true,
-			forceSelection: true,
-			emptyText: '--select one--',
-			triggerAction: 'all',
-			mode: 'local',
-			store: new Ext.data.ArrayStore({
-			    fields: ['value', 'text'],
-			    data : [
-					['Monthly', 'Monthly'], 
-					['Weekly', 'Weekly'], 
-					['Yearly', 'Yearly'], 
-					['None','None']
-				]
-			}),
-			value: "Monthly",
-			valueField: 'value',
-			displayField: 'text',
-	    },{//http://thelampposts.blogspot.com/2008/04/creating-basic-select-box-in-extjs.html
+			
+			xtype:	'compositefield',
+			labelWidth: 60,
+			qtip: "Repeat this transaction every x periods ( every 1 month )",
+			fieldLabel: "Repeat every",
+			items: [
+				{
+					xtype: 'numberfield',
+					name:	'repeat_amount',
+					fieldLabel: 'Repeat',
+					value:	1,
+					width: 30,
+			    },{//http://thelampposts.blogspot.com/2008/04/creating-basic-select-box-in-extjs.html
+					xtype:'combo',
+					name: 'repeat',
+					fieldLabel: "Every",
+					editable: false,
+					disableKeyFilter: true,
+					forceSelection: true,
+					emptyText: '--select one--',
+					triggerAction: 'all',
+					mode: 'local',
+					store: new Ext.data.ArrayStore({
+					    fields: ['value', 'text'],
+					    data : [
+							['Monthly', 'Monthly'], 
+							['Weekly', 'Weekly'], 
+							['Yearly', 'Yearly'], 
+							['None','None']
+						]
+					}),
+					value: "Monthly",
+					valueField: 'value',
+					displayField: 'text',
+					width: 80
+			    }
+			]
+		},{//http://thelampposts.blogspot.com/2008/04/creating-basic-select-box-in-extjs.html
 			xtype:'combo',
 			name: 'type',
 			fieldLabel: "Type",
@@ -56,7 +68,7 @@ MS.LedgerForm = function(config){
 					['Debt', 'Debt'], 
 					['Service', 'Service'], 
 					['Income', 'Income'], 
-					['Other','Other']
+					['Other','Other'],
 				]
 			}),
 			value: "Debt",
@@ -70,7 +82,13 @@ MS.LedgerForm = function(config){
 			xtype:	'checkbox',
 			name:	'income',
 			fieldLabel: 'Income?',
+			tooltip: "Select this box if this is income (otherwise, MoneyStew will make sure the amount is negative)",
 			value: false
+		},{
+			xtype: 'textarea',
+			name: 'note',
+			fieldLabel: 'Notes',
+			grow: true
 		}
 
 	];
@@ -78,7 +96,15 @@ MS.LedgerForm = function(config){
 	this.submitForm = function(b,e){
 		var form = this.getForm();
 		var data = this.form.getValues();		
-		console.log("submitted data from the form",data)
+		if(data.income && data.income == "on"){
+			if(data.amount <0 ){
+				data.amount *= -1;
+			}
+		} else {
+			if(data.amount > 0){
+				data.amount *= -1;
+			}
+		}
 		if(this.record){
 		    Ext.apply(this.record.data, data);
 		    this.record.markDirty();
@@ -102,7 +128,14 @@ MS.LedgerForm = function(config){
     MS.LedgerForm.superclass.constructor.apply(this,arguments);
 
     if(this.record){
-		this.getForm().setValues(this.record.data);
+		var frm = this.getForm();
+		
+		frm.setValues(this.record.data);
+		if(this.record.data.amount > 0){
+			frm.setValues({
+				'income': true
+			});
+		}
     }
 }
 

@@ -247,6 +247,11 @@
 .icon-edit-record {
 	background-image:url(../img/silk/icons/table_edit.png) ! important;
 }
+
+.icon-edit {
+	background-image:url(../img/silk/icons/page_white_edit.png) ! important;
+}
+
 .icon-actions {
 	background-image:url(../img/silk/icons/lightning.png) ! important;
 }
@@ -308,7 +313,7 @@
 	background-image:url(../ext/resources/images/default/s.gif) ! important;
 }
 .icon-delete {
-	background-image:url(../img/silk/icons/bin_empty.png) ! important;
+	background-image:url(../img/silk/icons/delete.png) ! important;
 }
 .icon-tree {
 	background-image:url(../img/icons/tree_16.png) ! important;

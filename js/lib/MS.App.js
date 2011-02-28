@@ -19,6 +19,7 @@ MS.App = Ext.extend(Ext.util.Observable, {
     },
     
     start: function(){
+		Ext.QuickTips.init();
         //this.viewport = new Ext.Viewport(MS.viewport);
         this.viewport = new MS.viewport();
         this.viewport.on('nav', this.dispatch, this);	

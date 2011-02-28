@@ -34,8 +34,8 @@ class AppController(webapp.RequestHandler):
     '''
     def _getscripts(self):
         scripts = [
-            "/js/ext/adapter/ext/ext-base-debug.js",
-            "/js/ext/ext-all-debug.js",
+            "/js/extlib/ext-base-debug.js",
+            "/js/extlib/ext-all-debug.js",
             "/js/ext/ux/Ext.ux.data.CouchReader.js",
             "/js/ext/examples/ux/CheckColumn.js",
             "/js/ext/examples/ux/GroupSummary.js",

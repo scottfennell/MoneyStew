@@ -15,7 +15,6 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 		// Typical JsonReader.  Notice additional meta-data params for defining the core attributes of your json-response
 		var reader = new MS.JsonReader({
 		    	totalProperty: 'total',
-		    	successProperty: 'success',
 		    	idProperty: 'id',
 		    	root: 'data',
 		    	messageProperty: 'message'  // <-- New "messageProperty" meta-data
@@ -50,7 +49,6 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 				exception:function(){
 					console.log("Some exception",arguments)
 				}
-				
 			}
 		};
 		
@@ -60,6 +58,7 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 	}, 
 	
 	save: function(){
+		console.log("Saving ", arguments);
 		MS.LedgerStore.superclass.save.apply(this,arguments);
 	},
 	
@@ -71,7 +70,7 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 
 MS.JsonReader = Ext.extend(Ext.data.JsonReader,{
 	readResponse: function(action, response){
-		MS.JsonReader.superclass.readResponse.apply(this,arguments);
+		return MS.JsonReader.superclass.readResponse.apply(this,arguments);
 	}
 })
 

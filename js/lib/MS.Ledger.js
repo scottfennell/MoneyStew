@@ -60,33 +60,13 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 			,keepSelection:true
 			,actions:[
 				{
-					iconCls:'icon-open'
-					,tooltip:'Open'
+					iconCls:'icon-delete',
+					tooltip:'Open',
+					qtip:"Delete Transaction"
+					
 				},{
-					 iconCls:'icon-wrench'
-					,tooltip:'Configure'
-					,qtipIndex:'qtip2'
-				},{
-					qtipIndex:'qtip3'
-					,iconCls:'icon-user'
-					,tooltip:'User'
-					,style:'background-color:yellow'
-				}
-			]
-			,groupActions:[
-				{
-					 iconCls:'icon-del-table'
-					,qtip:'Remove Table'
-				},{
-					 iconCls:'icon-add-table'
-					,qtip:'Add Table - with callback'
-					,callback:function(grid, records, action, groupId) {
-						console.log('Callback: icon-add-table', 'Group: <b>{0}</b>, action: <b>{1}</b>, records: <b>{2}</b>', groupId, action, records.length);
-					}
-				},{
-					 iconCls:'icon-graph'
-					,qtip:'View Graph'
-					,align:'left'
+					 iconCls:'icon-edit',
+					 qtip: 'Edit transaction'
 				}
 			]
 			,callbacks:{
@@ -96,11 +76,32 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 			}
 		});
 		
-		row_actions.on({
-			action:function(grid, record, action, row, col) {
-				console.log('Event: action', 'You have clicked record', record);
+		row_actions.on("action", function(grid, record, action, row, col) {
+			console.log('Event: action', 'You have clicked record with'+action, record);
+			if (action == 'icon-edit') {
+				var ledgerId = record.data.couchId;
+				if (ledgerId && this.store) {
+					var ledgerRecord = this.store.getById(ledgerId);
+					if (ledgerRecord) {
+						this.editForm(ledgerRecord);
+					}
+				}
+			} else if (action == "icon-delete") {
+				var ledgerId = record.data.couchId;
+				if (ledgerId && this.store) {
+					var ledgerRecord = this.store.getById(ledgerId);
+					if (ledgerRecord) {
+						this.store.remove(ledgerRecord);
+					}
+				}
+				
 			}
-			,beforeaction:function() {
+				
+		}, this)
+		
+		//Unused
+		row_actions.on({
+			beforeaction:function() {
 				console.log('Event: beforeaction', 'You can cancel the action by returning false from this event handler.');
 			}
 			,beforegroupaction:function() {
@@ -127,7 +128,14 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 	                },
 	                editor: new Ext.form.TextField({
 	                   allowBlank: false
-	                })
+	                }),
+					renderer: function(value, metaData, record, rowIndex, colIndex, store) {
+						console.log(record);
+				      if(record.data.note != ""){
+					  	return value+"<br/>"+record.data.note;
+					  }
+				      return value;
+				   }
 	            },{
 	                header: 'Month',
 	                width: 20,
@@ -177,39 +185,48 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 		    }),
 		    plugins:[summary,checkColumn,row_actions],
 	
-		    tbar : [
-			'Start',{
+		    tbar : [{
+			
+				text:'Add Transaction',
+			    tooltip:'Add a new scheduled transaction',
+			    iconCls:'add',
+			    listeners: {
+					click: {
+						fn: this.addFormClick,
+						scope: this
+					}
+				}
+
+	    	},'->','Start',{
 			    xtype:'datefield',
 			    value:self.datedata.startDate,
 			    listeners: {
-				change: {
-				    fn:self.datedata.updateStartDate,
-				    scope:self.datedata
-				}
+					change: {
+					    fn:self.datedata.updateStartDate,
+					    scope:self.datedata
+					}
 			    }
 			},"End",{
 			    xtype:'datefield',
 			    value:self.datedata.endDate,
 			    listeners: {
-				change: {
-				    fn:self.datedata.updateEndDate,
-				    scope:self.datedata
-				}
+					change: {
+					    fn:self.datedata.updateEndDate,
+					    scope:self.datedata
+					}
 			    }
-			},'->',"Current Balance"
+			},"-","Current Balance"
 			,{
 			    xtype:'numberfield',
 			    name:'balance',
 			    value: "0.00",
 			    listeners: {
-				change: {
-				    fn:self.changeBalance,
-				    scope:self
-				}
+					change: {
+					    fn:self.changeBalance,
+					    scope:self
+					}
 			    }
-	
-			}
-		    ],
+			}],
 		    clicksToEdit: 1,
 		    trackMouseOver: false,
 		    //enableColumnMove: false,
@@ -225,5 +242,54 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 		if(this.datedata){
 		    this.datedata.changeStartBalance(newVal);
 		}
+    },
+	
+	editForm : function(rec){	
+		var form = new MS.LedgerForm({
+		    record: rec
+		});
+		this.currentWindow = new Ext.Window({
+		    width:400,
+		    height:300,
+		    layout:'fit',
+		    title: 'Edit Transaction',
+		    items:[form]
+		});
+		this.currentWindow.show();
+		form.on('save', this.saveAfterEdit, this)
+    },
+
+    addFormClick : function(){
+		var form = new MS.LedgerForm();
+		this.currentWindow = new Ext.Window({
+		    width:400,
+		    height:300,
+		    layout:'fit',
+		    title: 'Add New Transaction',
+		    items:[form]
+		});
+	
+		this.currentWindow.show();
+		form.on('save', this.saveAfterAdd, this)
+    }, 
+	
+	saveAfterEdit : function(data){
+		//record should be updated
+		this.completeEditAdd();
+    },
+
+    saveAfterAdd : function(data){
+		var x = new this.store.recordType(data);
+		this.store.add(x);
+		this.completeEditAdd();
+    },
+
+    completeEditAdd : function(){
+		this.store.commitChanges();
+		if(this.currentWindow){
+		    this.currentWindow.destroy();
+		}
     }
+
+	
 });

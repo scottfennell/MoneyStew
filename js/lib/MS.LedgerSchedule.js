@@ -31,6 +31,7 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 					{name: 'couchId', type: 'string'},
 					{name: 'date', type: 'date', dateFormat:'m/d/Y'},
 					{name: 'name', type: 'string'},
+					{name: 'note', type: 'string'},
 					{name: 'disable', type: 'boolean'},
 					{name: 'amount', type: 'float'},
 					{name: 'total', type: 'float'}
@@ -61,6 +62,11 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 		
 		var interval = this._getInterval(record);
 		var record_start = record.data.start_date;
+		//Convert a string date to a valid date
+		if(!Ext.isDate(record_start)){
+			record_start = Date.parseDate(record_start, "m/d/Y");
+		}
+		
 		var rec_dates = this._adjustDateToStart(
 			record_start, interval.repeat, interval.amount, this.startDate);
 		
@@ -78,6 +84,7 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	                couchId: record.data.id,
 	                date: rec_dates.format('m/d/Y'),
 	                name: record.data.name,
+					note: record.data.note || "",
 	                disable: false,
 	                amount: record.data.amount,
 	                total: 0
