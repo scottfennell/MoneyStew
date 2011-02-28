@@ -110,4 +110,16 @@
 	font-size: 0.95em;
 }
 
+.moneystew-header {
+	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:1.2em;
+	background-color:#DEECFD;;
+	padding:5px;
+}
+
+.moneystew-header .x-panel-body {
+	background-color:#DEECFD;
+}
+
+
 /* eof */ 

@@ -16,32 +16,9 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 	        items: [{
 	            region: 'north',
 	            html: 'MoneyStew',
-	            autoHeight: true
-	        },{
-	            region: 'west',
-	            collapsible: true,
-	            title: 'Navigation',
-	            xtype: 'treepanel',
-	            width: 200,
-	            autoScroll: true,
-	            split: true,
-	            loader: new Ext.tree.TreeLoader(),
-	            root: new Ext.tree.AsyncTreeNode({
-	                expanded: true,
-	                children: [{
-			    		module: 'Ledger',
-	                    action: 'ledgerPanel',
-	                    text: 'Ledger',
-	                    leaf: true
-	                },{
-	                    module: 'Ledger',
-	                    action: 'showList',
-	                    text: 'Ledger Items',
-			    		tooltip: 'Add/Edit ledger Items',
-	                    leaf: true
-	                }]
-	            }),
-	            rootVisible: false
+	            autoHeight: true,
+				border: false,
+				cls: "moneystew-header"
 	        },{
 	            region: 'center',
 	            xtype: 'tabpanel' // TabPanel itself has no title
@@ -51,9 +28,9 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 		Ext.apply(this,defConfig);
 		MS.viewport.superclass.constructor.apply(this,[defConfig]);
 		
-		this.navPanel = this.items.itemAt(1);
-        this.navPanel.on('click',this.fireNav,this);
-        this.tabPanel = this.items.itemAt(2);
+		//this.navPanel = this.items.itemAt(1);
+        //this.navPanel.on('click',this.fireNav,this);
+        this.tabPanel = this.items.itemAt(1);
 	},
 
     fireNav : function(n){        

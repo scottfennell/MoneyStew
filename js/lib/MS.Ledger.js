@@ -221,7 +221,9 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 					    fn:self.changeBalance,
 					    scope:self
 					}
-			    }
+				}
+			},{
+				text:'Recaculate',
 			}],
 		    clicksToEdit: 1,
 		    trackMouseOver: false,
