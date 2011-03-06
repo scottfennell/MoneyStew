@@ -2,7 +2,7 @@
 Ext.ux.grid.GroupSummary.Calculations['totalCost'] = function(v, record, field){
     	return v + (record.data.estimate * record.data.rate);
 	};
-
+Ext.ns("MS");
 MS.Ledger = new Ext.extend(Ext.util.Observable,{
     gridCfg:[
 		{header: 'Day', dataIndex:'day'},

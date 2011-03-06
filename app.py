@@ -18,7 +18,13 @@ Handle application wide settings, such as layout and
 class AppController(webapp.RequestHandler):
     
     def get(self):
-        self.render("")
+        user = users.get_current_user()
+
+        if user:
+            self.render("")
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
+        
     
     def renderTemplate(self, template_name, values):
         
@@ -34,12 +40,12 @@ class AppController(webapp.RequestHandler):
     '''
     def _getscripts(self):
         scripts = [
-            "/js/extlib/ext-base-debug.js",
-            "/js/extlib/ext-all-debug.js",
-            "/js/ext/ux/Ext.ux.data.CouchReader.js",
-            "/js/ext/examples/ux/CheckColumn.js",
-            "/js/ext/examples/ux/GroupSummary.js",
-            "/js/ext/ux/Ext.ux.grid.RowActions.js"
+            "/js/extlib/ext-base.js",
+            "/js/extlib/ext-all.js",
+            "/js/extlib/ux/Ext.ux.data.CouchReader.js",
+            "/js/extlib/ux/CheckColumn.js",
+            "/js/extlib/ux/GroupSummary.js",
+            "/js/extlib/ux/Ext.ux.grid.RowActions.js"
         ]
         path = os.path.join(os.path.dirname(__file__), "js/lib")
         #Path to js_files symlink ... this might be easier to just manually manage
@@ -76,9 +82,6 @@ application = webapp.WSGIApplication([('/', AppController)], debug=True)
 
 def main():
     run_wsgi_app(application)
-
-def poo():
-    print "poo"
 
 if __name__ == "__main__":
     main()

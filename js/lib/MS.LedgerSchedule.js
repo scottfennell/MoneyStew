@@ -4,6 +4,7 @@
  * 
  * @param {Object} config
  */
+Ext.ns("MS");
 MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	
 	startDate: null, 

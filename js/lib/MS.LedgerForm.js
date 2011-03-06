@@ -1,3 +1,4 @@
+Ext.ns("MS");
 MS.LedgerForm = function(config){
     Ext.apply(this,config||{});
     this.addEvents({
