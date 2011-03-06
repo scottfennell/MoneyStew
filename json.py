@@ -24,9 +24,9 @@ provided to further simplify usage.
 """
 
 import datetime
-import simplejson
 import time
 
+from django.utils import simplejson
 from google.appengine.api import users
 from google.appengine.ext import db
 
