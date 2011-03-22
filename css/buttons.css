@@ -13,19 +13,19 @@
 
 
 .icon-grid {
-    background-image:url(../js/ext/examples/shared/icons/fam/grid.png) !important;
+    background-image:url(../img/silk/icons/grid.png) !important;
 }
 .add {
-    background-image:url(../js/ext/examples/shared/icons/fam/add.gif) !important;
+    background-image:url(../img/silk/icons/add.png) !important;
 }
 .option {
-    background-image:url(../js/ext/examples/shared/icons/fam/plugin.gif) !important;
+    background-image:url(../img/silk/icons/plugin.png) !important;
 }
 .remove {
-    background-image:url(../js/ext/examples/shared/icons/fam/delete.gif) !important;
+    background-image:url(../img/silk/icons/delete.png) !important;
 }
 .save {
-    background-image:url(../js/ext/examples/shared/icons/save.gif) !important;
+    background-image:url(../img/silk/icons/save.png) !important;
 }
 
 /** vim: ts=4:sw=4:nu:fdc=4:nospell 

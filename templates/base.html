@@ -9,6 +9,9 @@
 	{% for scrpt in scripts_for_layout %}
 	<script src="{{ scrpt }}" type="text/javascript" charset="utf-8"></script>
 	{% endfor %}
+	<script type="text/javascript" charset="ut-8">
+		logout_url = "{{ create_logout_url }}";
+	</script>
 </head>
 <body>
 {{content_for_layout}}

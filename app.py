@@ -23,7 +23,11 @@ class AppController(webapp.RequestHandler):
         if user:
             self.render("")
         else:
-            self.redirect(users.create_login_url(self.request.uri))
+            template_values = {
+                'login_url': users.create_login_url(self.request.uri)
+            }
+            self.response.out.write(self.renderTemplate("home.html",template_values))
+            #self.redirect(users.create_login_url(self.request.uri))
         
     
     def renderTemplate(self, template_name, values):
@@ -59,6 +63,7 @@ class AppController(webapp.RequestHandler):
     def render(self, content_for_layout, layout='base.html'):
         #get layout information and set that too the viewadsaf
         template_values = {
+            'create_logout_url' : users.create_logout_url("/"),
             'content_for_layout':content_for_layout,
             'scripts_for_layout':self._getscripts()
         }

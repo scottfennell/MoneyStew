@@ -1,7 +1,12 @@
 /*  
 // Icon Classes */
+.x-toolbar div.money-stew-header {
+	padding-left: 25px;
+	background:url(../img/money_stew_icon.png) no-repeat top left;
+}
+
 .icon-ob {
-	background-image:url(../img/icons/ob_16.png) ! important;
+	background-image:url(../img/silk/icons/ob_16.png) ! important;
 }
 .icon-graph {
 	background-image:url(../img/silk/icons/chart_curve.png) ! important;
@@ -14,7 +19,7 @@
 	background-position: 1px 1px;
 }
 .icon-ok {
-	background-image:url(../img/icons/ok16.png) ! important;
+	background-image:url(../img/silk/icons/ok16.png) ! important;
 }
 .icon-view-tile {
 	background-image:url(../img/silk/icons/application_view_tile.png) ! important;
@@ -26,7 +31,7 @@
 	background-image:url(../ext/resources/images/default/menu/checked.gif) ! important;
 }
 .icon-stat-data {
-	background-image:url(../img/icons/kate_16.png) ! important;
+	background-image:url(../img/silk/icons/kate_16.png) ! important;
 }
 .icon-rename {
 	background-image:url(../img/silk/icons/textfield_rename.png) ! important;
@@ -56,7 +61,7 @@
 	background-image:url(../img/silk/icons/table_delete.png) ! important;
 }
 .icon-admin {
-	background-image:url(../img/icons/adv_settings_16.png) ! important;
+	background-image:url(../img/silk/icons/adv_settings_16.png) ! important;
 }
 .icon-grid {
     background-image:url(../img/silk/icons/application_view_columns.png) !important;
@@ -65,22 +70,22 @@
 	background-image:url(../img/silk/icons/key.png) ! important;
 }
 .icon-key2 {
-	background-image:url(../img/icons/key_16.png) ! important;
+	background-image:url(../img/silk/icons/key_16.png) ! important;
 }
 .icon-under-construction {
-	background-image:url(../img/icons/under-construction16.png) ! important;
+	background-image:url(../img/silk/icons/under-construction16.png) ! important;
 }
 .icon-expand-all {
-	background-image:url(../img/icons/expand-all.gif) ! important;
+	background-image:url(../img/isilk/cons/expand-all.gif) ! important;
 }
 .icon-collapse-all {
-	background-image:url(../img/icons/collapse-all.gif) ! important;
+	background-image:url(../img/silk/icons/collapse-all.gif) ! important;
 }
 .icon-expand {
-	background-image:url(../img/icons/expand-all.gif) ! important;
+	background-image:url(../img/silk/icons/expand-all.gif) ! important;
 }
 .icon-collapse {
-	background-image:url(../img/icons/collapse-all.gif) ! important;
+	background-image:url(../img/silk/icons/collapse-all.gif) ! important;
 }
 .icon-tree-orgboard {
 	background-image:url(../img/silk/icons/chart_organisation.png) ! important;
@@ -98,10 +103,10 @@
 	background-image:url(../img/silk/icons/delete.png) ! important;
 }
 .icon-house {
-	background-image:url(../img/icons/house_16.png) ! important;
+	background-image:url(../img/silk/icons/house_16.png) ! important;
 }
 .icon-user {
-	background-image:url(../img/icons/user2_16.png) ! important;
+	background-image:url(../img/silk/icons/user2_16.png) ! important;
 }
 .icon-trash-empty {
 	background-image:url(../img/silk/icons/bin_empty.png) ! important;
@@ -149,13 +154,13 @@
 	background-image:url(../img/silk/icons/group_delete.png) ! important;
 }
 .icon-stat-portal {
-	background-image:url(../img/icons/stat_portal_16.png) ! important;
+	background-image:url(../img/silk/icons/stat_portal_16.png) ! important;
 }
 .icon-stat-list {
-	background-image:url(../img/icons/stat_list_16.png) ! important;
+	background-image:url(../img/silk/icons/stat_list_16.png) ! important;
 }
 .icon-cancel {
-	background-image:url(../img/icons/cancel16.png) ! important;
+	background-image:url(../img/silk/icons/cancel16.png) ! important;
 }
 .icon-cross {
 	background-image:url(../img/silk/icons/cross.png) ! important;
@@ -173,7 +178,7 @@
 	background-image:url(../ext/resources/images/default/grid/wait.gif) ! important;
 }
 .icon-upload {
-	background-image:url(../img/icons/up.png) ! important;
+	background-image:url(../img/silk/icons/up.png) ! important;
 }
 .icon-folder-add {
 	background-image:url(../img/silk/icons/folder_add.png) ! important;
@@ -298,10 +303,10 @@
 	background-image:url(../img/silk/icons/book_open.png) ! important;
 }
 .icon-lock {
-	background-image:url(../img/icons/lock16.png) ! important;
+	background-image:url(../img/silk/icons/lock16.png) ! important;
 }
 .icon-lock-open {
-	background-image:url(../img/icons/unlock16.png) ! important;
+	background-image:url(../img/silk/icons/unlock16.png) ! important;
 }
 .icon-arrow-down {
 	background-image:url(../img/silk/icons/arrow_down.png) ! important;
@@ -316,7 +321,7 @@
 	background-image:url(../img/silk/icons/delete.png) ! important;
 }
 .icon-tree {
-	background-image:url(../img/icons/tree_16.png) ! important;
+	background-image:url(../img/silk/icons/tree_16.png) ! important;
 }
 .icon-form-edit {
 	background-image:url(../img/silk/icons/application_form_edit.png) ! important;
@@ -325,20 +330,20 @@
 	background-image:url(../img/silk/icons/application_form_add.png) ! important;
 }
 .icon-filter {
-	background-image:url(../img/icons/view-filter16.png) ! important;
+	background-image:url(../img/silk/icons/view-filter16.png) ! important;
 }
 .icon-filter-active {
-	background-image:url(../img/icons/view-filter-go16.png) ! important;
+	background-image:url(../img/silk/icons/view-filter-go16.png) ! important;
 }
 .icon-stat-cat {
-	background-image:url(../img/icons/stat-cat_16.png) ! important;
+	background-image:url(../img/silk/icons/stat-cat_16.png) ! important;
 }
 .x-form-field-wrap .trigger-tag-add {
-	background-image: url(../img/trigger-tag-add.png);
+	background-image: url(../img/silk/icons/trigger-tag-add.png);
 	cursor:pointer;
 }
 .x-form-field-wrap .trigger-tag {
-	background-image: url(../img/trigger-tag.png);
+	background-image: url(../img/silk/icons/trigger-tag.png);
 	cursor:pointer;
 }
 .x-form-field-wrap .x-trigger-disabled {
@@ -347,7 +352,7 @@
 	background-position:0 0;
 }
 .x-form-field-wrap .trigger-tree {
-	background-image: url(../img/trigger-tree.png);
+	background-image: url(../img/silk/icons/trigger-tree.png);
 	cursor:pointer;
 }
 
