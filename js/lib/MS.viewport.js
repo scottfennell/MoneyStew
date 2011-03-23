@@ -45,8 +45,8 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 				    ]
 				}),{
 	            region: 'south',
-	            html: 'MoneyStew',
-	            autoHeight: true,
+	            html: '<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>',
+	            height: 90,
 				border: false,
 				cls: "moneystew-header"
 	        },{
@@ -54,7 +54,9 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 				region: 'center',
 	            xtype: 'tabpanel',
 	            border: false
-	        },{
+	        }
+			/*
+			,{
 				region: 'east',
 				
 				width:300,
@@ -75,7 +77,9 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 						border: false
 					}
 				]
-			}]
+			}
+			*/
+			]
 	    }
 		defConfig = Ext.apply(defConfig,config || {});
 		Ext.apply(this,defConfig);
