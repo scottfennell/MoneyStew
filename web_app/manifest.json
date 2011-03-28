@@ -1,0 +1,18 @@
+{
+  "name": "MoneyStew",
+  "description": "Keep an eye on your repeating bills and help setup a budget",
+  "version": "1",
+  "app": {
+    "urls": [
+      "http://money-stew.appspot.com/"
+    ],
+    "launch": {
+      "web_url": "http://money-stew.appspot.com/app"
+    }
+  },
+  "icons": {
+    "128": "moneystew_128.png"
+  },
+  "permissions": [
+  ]
+}
