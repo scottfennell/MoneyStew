@@ -27,6 +27,7 @@ MS.App = Ext.extend(Ext.util.Observable, {
         this.ledgerStore.load();
         this.initModules();
         this.dispatchAction('Ledger', 'ledgerPanel');
+		this.viewport.addChart(this.Ledger.datedata);
     },
     
     initModules: function(){
@@ -35,6 +36,7 @@ MS.App = Ext.extend(Ext.util.Observable, {
             parent: this,
             store: this.ledgerStore
         });
+		
         //this.Schema = new MS.Schema({parent:this});
     },
     dispatchAction: function(module, action){

@@ -83,7 +83,11 @@ class AppController(webapp.RequestHandler):
         pp.pprint( out )
         self.response.out.write("</pre>");
         
-application = webapp.WSGIApplication([('/', AppController)], debug=True)
+application = webapp.WSGIApplication(
+                                     [('/', AppController),
+                                      ('/app', AppController),
+                                      ('/home', AppController)]
+                                     , debug=True)
 
 def main():
     run_wsgi_app(application)

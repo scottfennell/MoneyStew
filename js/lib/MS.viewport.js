@@ -44,9 +44,10 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 				        }
 				    ]
 				}),{
+				id: "SouthPaw",
 	            region: 'south',
-	            html: '<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>',
-	            height: 90,
+	            html: '',//<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>',
+	            height: 100,
 				border: false,
 				cls: "moneystew-header"
 	        },{
@@ -55,32 +56,13 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 	            xtype: 'tabpanel',
 	            border: false
 	        }
-			/*
 			,{
+				id: 'EastContentPanel',
 				region: 'east',
-				
-				width:300,
-				layout: {
-					type: "vbox",
-					padding: '5',
-    				align: 'left'
-				},
-				items: [
-					{ 
-						flex: 50,
-						html:"This is the first",
-						border: false
-					},
-					{
-						flex:50,
-						html: "This is the second",
-						border: false
-					}
-				]
-			}
-			*/
-			]
+				width:300
+			}]
 	    }
+		
 		defConfig = Ext.apply(defConfig,config || {});
 		Ext.apply(this,defConfig);
 		MS.viewport.superclass.constructor.apply(this,[defConfig]);
@@ -88,7 +70,37 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 		//this.navPanel = this.items.itemAt(1);
         //this.navPanel.on('click',this.fireNav,this);
         //this.tabPanel = this.items.itemAt(2);
+		this.eastPanel = Ext.getCmp("EastContentPanel");
 		this.tabPanel = Ext.getCmp("MainContentPanel");
+		this.southpaw = Ext.getCmp("SouthPaw");
+		console.log(this.southpaw);
+		var adPanel = Ext.get("adsense-panel");
+		this.southpaw.body.appendChild(adPanel);
+	},
+	
+	addChart: function(store) {
+		var chart = new Ext.chart.PieChart({
+			store: store,
+			dataField: 'amount',
+            categoryField: 'name',
+		 	extraStyle:
+            {
+                legend:
+                {
+                    display: 'bottom',
+                    padding: 5,
+                    font:
+                    {
+                        family: 'Tahoma',
+                        size: 13
+                    }
+                }
+            }
+			
+		});
+		
+		this.eastPanel.add(chart);
+		this.eastPanel.doLayout();
 	},
 
     fireNav : function(n){        

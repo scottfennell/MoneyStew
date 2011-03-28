@@ -19,10 +19,6 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 		this.startDate = new Date();
 		this.endDate = this.startDate.add(Date.MONTH, 1);
 		
-	 	
-
-		
-		
 		var defConfig = {
 			reader: new Ext.data.JsonReader({
 			    idProperty: 'seqId',
@@ -101,6 +97,10 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 				count++;
 	        }
 		}
+	},
+	
+	getScheduleStore: function() {
+		return this.pstore;
 	},
 	
 	/**
