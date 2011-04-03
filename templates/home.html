@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,6 +18,23 @@
 		  })();
 	
 		</script>
+		<script type="text/javascript" src="/js/home/autofadeslideshow.js"></script>			<script type="text/javascript">
+				var autogallery = new fadeSlideShow({
+					"wrapperid":"auto_slide_show",
+					"dimensions":[400,300],
+					"displaymode":{"type":"auto","pause":4000,"cycles":0,"wraparound":false},
+					"persist":false,
+					"fadeduration":900,
+					"descreveal":"ondemand",
+					"togglerid":"",
+					"imagearray":[
+						["/img/screenshots/1.png","","",""],
+						["/img/screenshots/2.png","","",""],
+						["/img/screenshots/3.png","","",""],
+						
+					]
+					});
+		</script> 
 	</head>
 	<body>
 		<div class="head">
@@ -25,17 +42,37 @@
 			<div class="clear">&nbsp;</div>
 		</div>
 		<div class="container">
+			
+			<div class="intro">
+				<div class="quicktext">
+				
+				<h3>Need help organizing your personal finances? MoneyStew can help.</h3>
+				Here's how:
+				<ul>
+					<li>Organize your bills in a list sorted by date</li>
+					<li>See where your money is going every month</li>
+					<li>Determine where your money is best spent</li>
+					<li>See how much you can put into savings</li>
+				</ul>
+				<br/>
+				<div class="headlog">
+					<a href="{{login_url}}"><b>Login with Google</b></a>
+				</div>
+				</div>
+				<div id="auto_slide_show">&nbsp</div>
+				<div class="clear">&nbsp;</div>
+				
+			</div>
 		
 		<div class="section content">
 			
+			
 			<h2>What is Money Stew ?</h2> 
-			<img src="/img/money_stew_logo_128.png" class="logo" />
-			<p> 
-				<br/>
-				<h3 class="tagline">MoneyStew will help you keep your money and bills a bit more organized
-				and keep a better idea on just how much money you have.</h3>
-				<br/>
-			</p>
+			
+			
+			
+			
+			
 			<p>
 				<b>MoneyStew will help you keep track of repeating transactions</b>, 
 				what days they are due, and let you know if you will have enough 
