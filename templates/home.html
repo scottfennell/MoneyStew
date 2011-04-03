@@ -25,41 +25,39 @@
 					"displaymode":{"type":"auto","pause":4000,"cycles":0,"wraparound":false},
 					"persist":false,
 					"fadeduration":900,
-					"descreveal":"ondemand",
+					"descreveal":"always",
 					"togglerid":"",
 					"imagearray":[
-						["/img/screenshots/1.png","","",""],
-						["/img/screenshots/2.png","","",""],
-						["/img/screenshots/3.png","","",""],
-						
+						["/img/screenshots/3.png","","","MoneyStew will present you with quick visuals of your finances"],
+						["/img/screenshots/1.png","","","Easily add and edit new bills/budget items"],
+						["/img/screenshots/2.png","","","View all your bills and how much money your will have left over, quickly and easily"],
 					]
 					});
 		</script> 
 	</head>
 	<body>
-		<div class="head">
-			<a href="{{login_url}}"><b>Login with google</b></a>
-			<div class="clear">&nbsp;</div>
-		</div>
+
 		<div class="container">
-			
 			<div class="intro">
+				<img src="/img/moneystew_128.png" class="logo" alt="Money Stew Logo" width="64"/>
+				<h1>MoneyStew</h1>
 				<div class="quicktext">
-				
-				<h3>Need help organizing your personal finances? MoneyStew can help.</h3>
-				Here's how:
-				<ul>
-					<li>Organize your bills in a list sorted by date</li>
-					<li>See where your money is going every month</li>
-					<li>Determine where your money is best spent</li>
-					<li>See how much you can put into savings</li>
-				</ul>
+					
+					
+					<h3>Need help organizing your personal finances? MoneyStew can help.</h3>
+					Here's how:
+					<ul>
+						<li>Organize your bills in a list sorted by date</li>
+						<li>See where your money is going every month</li>
+						<li>Determine where your money is best spent</li>
+						<li>See how much you can put into savings</li>
+					</ul>
 				<br/>
-				<div class="headlog">
-					<a href="{{login_url}}"><b>Login with Google</b></a>
+					<div class="headlog">
+						<a href="{{login_url}}"><b>Login with Google</b></a>
+					</div>
 				</div>
-				</div>
-				<div id="auto_slide_show">&nbsp</div>
+				<div id="auto_slide_show">&nbsp</div> 
 				<div class="clear">&nbsp;</div>
 				
 			</div>
@@ -103,9 +101,6 @@
 				I <b>finally</b> decided to make a small application that would let 
 				me jump in and take a look at what I had going on.
 			</p>
-			<p>
-				
-			</p>
 		</div>
 		
 		<div class="section what-ms-is-not">
@@ -133,16 +128,14 @@
 			</ul>
 		</div>
 		
-		<div class="section login">
-		Anyway, use your <a href="{{login_url}}"><b>google login</b></a> and check it out, it may help you.
-		</div>
-		
-		<div class="foot">
+		<div class="section privacy">
 			<h2>Privacy?</h2>
 			<p>There isn't any sharing of your information with anyone else, ever, 
 			I won't ever sell your info to anyone. To put it simply, the information
 			your provide is stored for the exclusive use of the MoneyStew application.</p>
-			<b>Btw, the <a href="https://github.com/scottfennell/MoneyStew">source is here</a> if you are really worried.</b> 
+			
+			<p><b>Btw, the <a href="https://github.com/scottfennell/MoneyStew">source is here</a> if you are really worried.</b></p>
+			 
 			<p>You can contact me at scott@sinvertical.com if you have any real concerns, questions, or thoughts.</p>
 		
 		</div>
@@ -158,6 +151,10 @@
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</script>
 		
+		</div>
+		<div class="head">
+			<a href="{{login_url}}"><b>Login with google</b></a>
+			<div class="clear">&nbsp;</div>
 		</div>
 	</body>
 </html>
