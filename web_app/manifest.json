@@ -1,7 +1,7 @@
 {
   "name": "MoneyStew",
-  "description": "Keep an eye on your repeating bills and help setup a budget",
-  "version": "1",
+  "description": "Need help managing your personal finances? Organize your bills, see your upcoming bills, visualize your financial future.",
+  "version": "2",
   "app": {
     "urls": [
       "http://money-stew.appspot.com/"
@@ -11,8 +11,7 @@
     }
   },
   "icons": {
-    "128": "moneystew_128.png"
+    "128": "app_store_icon_128.png"
   },
-  "permissions": [
-  ]
+  "permissions": []
 }

@@ -8,7 +8,7 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 	constructor: function(config){
 
 		
-		var proxy = new Ext.data.HttpProxy({
+		var proxy = new MS.GAEHttpProxy({
 		    url: "/ledger/json"
 		});
 		
@@ -33,7 +33,8 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 		// The new DataWriter component.
 		var writer = new Ext.data.JsonWriter({
 		    encode: false,   // <-- don't return encoded JSON -- causes Ext.Ajax#request to send data using jsonData config rather than HTTP params
-		    writeAllFields :true
+		    writeAllFields :true,
+			encodeDelete: false
 		});
 				// Typical Store collecting the Proxy, Reader and Writer together.
 		var defConfig = {
@@ -58,7 +59,6 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 	}, 
 	
 	save: function(){
-		console.log("Saving ", arguments);
 		MS.LedgerStore.superclass.save.apply(this,arguments);
 	},
 	
@@ -70,8 +70,17 @@ MS.LedgerStore = Ext.extend(Ext.data.Store,{
 
 MS.JsonReader = Ext.extend(Ext.data.JsonReader,{
 	readResponse: function(action, response){
-		console.log(response)
 		return MS.JsonReader.superclass.readResponse.apply(this,arguments);
 	}
 })
 
+// Special HttpProxy that sends no body on DELETE requests
+MS.GAEHttpProxy = Ext.extend(Ext.data.HttpProxy, {
+	doRequest: function(action, rs, params, reader, cb, scope, arg) {
+	    if(this.api[action]['method'].toLowerCase() == "delete") {
+	        delete params.jsonData;
+	    }
+	
+	    MS.GAEHttpProxy.superclass.doRequest.call(this, action, rs, params, reader, cb, scope, arg);
+	}
+});
