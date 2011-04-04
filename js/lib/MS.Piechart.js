@@ -37,7 +37,6 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 		});
 		
 		Ext.apply(this,defConfig);
-		console.log(this);
 		
 		MS.PieChart.superclass.constructor.apply(this,[defConfig]);
 		
@@ -61,7 +60,6 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 		this.currentId = 0;
         this.transactions = [];
         store.each(this._generateItems, this);
-		console.log(this.transactions);
         this.store.loadData(this.transactions);
 	},
 	
@@ -89,9 +87,7 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 				interval = 1;
 				break;
 		}
-		console.log(record);
 		var monthAmount = (( interval / rpt ) * val ) /12;
-		
 		
 		var item = {
 			name: record.data.name,

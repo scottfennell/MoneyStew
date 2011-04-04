@@ -15,7 +15,6 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	
 	
 	constructor : function(config){
-		console.log("Constructing new LedgerSchedule store", config);
 		this.startDate = new Date();
 		this.endDate = this.startDate.add(Date.MONTH, 1);
 		

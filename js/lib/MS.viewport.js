@@ -74,7 +74,6 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 		this.eastPanel = Ext.getCmp("EastContentPanel");
 		this.tabPanel = Ext.getCmp("MainContentPanel");
 		this.southpaw = Ext.getCmp("SouthPaw");
-		console.log(this.southpaw);
 		var adPanel = Ext.get("adsense-panel");
 		this.southpaw.body.appendChild(adPanel);
 	},
@@ -108,7 +107,6 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 	},
 	
 	logoutClick: function(b,e){
-		console.log(window.logout_url);
 		window.location = window.logout_url;
 	}
 
