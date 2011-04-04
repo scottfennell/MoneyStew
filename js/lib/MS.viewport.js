@@ -59,6 +59,7 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 			,{
 				id: 'EastContentPanel',
 				region: 'east',
+				title: "Expenses per month",
 				width:300
 			}]
 	    }
@@ -79,24 +80,8 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 	},
 	
 	addChart: function(store) {
-		var chart = new Ext.chart.PieChart({
-			store: store,
-			dataField: 'amount',
-            categoryField: 'name',
-		 	extraStyle:
-            {
-                legend:
-                {
-                    display: 'bottom',
-                    padding: 5,
-                    font:
-                    {
-                        family: 'Tahoma',
-                        size: 13
-                    }
-                }
-            }
-			
+		var chart = new MS.PieChart({
+			store:store
 		});
 		
 		this.eastPanel.add(chart);

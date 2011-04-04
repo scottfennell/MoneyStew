@@ -23,11 +23,7 @@ class AppController(webapp.RequestHandler):
         if user:
             self.render("")
         else:
-            template_values = {
-                'login_url': users.create_login_url(self.request.uri)
-            }
-            self.response.out.write(self.renderTemplate("home.html",template_values))
-            #self.redirect(users.create_login_url(self.request.uri))
+            self.redirect(users.create_login_url(self.request.uri))
         
     
     def renderTemplate(self, template_name, values):
@@ -83,10 +79,21 @@ class AppController(webapp.RequestHandler):
         pp.pprint( out )
         self.response.out.write("</pre>");
         
+'''
+Simple class to display the root page
+'''
+class HomeController(AppController):
+    def get(self):
+        template_values = {
+           'login_url': users.create_login_url("/app")
+        }
+        self.response.out.write(self.renderTemplate("home.html",template_values))
+        
+        
 application = webapp.WSGIApplication(
-                                     [('/', AppController),
+                                     [('/', HomeController),
                                       ('/app', AppController),
-                                      ('/home', AppController)]
+                                      ('/home', HomeController)]
                                      , debug=True)
 
 def main():
