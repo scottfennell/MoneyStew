@@ -4,7 +4,7 @@
  */
 
 Ext.ns("MS");
-MS.viewport = Ext.extend(Ext.Viewport,{
+MS.Viewport = Ext.extend(Ext.Viewport,{
 	
 	constructor: function(config){
 		this.addEvents({
@@ -57,34 +57,42 @@ MS.viewport = Ext.extend(Ext.Viewport,{
 	            border: false
 	        }
 			,{
-				id: 'EastContentPanel',
-				region: 'east',
-				title: "Expenses per month",
-				width:300
+				id: 		'EastContentPanel',
+				region: 	'east',
+				title: 		"Expenses per month",
+				width:		300,
+				layout: 	"anchor",
+				items: [
+					new MS.PieChart({
+						id: "piechart",
+						store: config.store,
+						anchor: "100% 50%"
+					}),
+					{
+						id: "stasis",	
+						anchor: "100% 50%",
+						html: "Something<br/>something<br/>something<br/>"
+					}
+				]
 			}]
 	    }
 		
 		defConfig = Ext.apply(defConfig,config || {});
 		Ext.apply(this,defConfig);
-		MS.viewport.superclass.constructor.apply(this,[defConfig]);
+		MS.Viewport.superclass.constructor.apply(this,[defConfig]);
 		
-		//this.navPanel = this.items.itemAt(1);
-        //this.navPanel.on('click',this.fireNav,this);
-        //this.tabPanel = this.items.itemAt(2);
 		this.eastPanel = Ext.getCmp("EastContentPanel");
 		this.tabPanel = Ext.getCmp("MainContentPanel");
 		this.southpaw = Ext.getCmp("SouthPaw");
 		var adPanel = Ext.get("adsense-panel");
 		this.southpaw.body.appendChild(adPanel);
-	},
-	
-	addChart: function(store) {
-		var chart = new MS.PieChart({
-			store:store
-		});
 		
-		this.eastPanel.add(chart);
-		this.eastPanel.doLayout();
+		this.pie = Ext.getCmp("piechart");
+		this.stasis = Ext.getCmp("stasis");
+		console.log("Stasis",this.stasis);
+		this.pie.setInfoElement(this.stasis.body);
+		
+		
 	},
 
     fireNav : function(n){        

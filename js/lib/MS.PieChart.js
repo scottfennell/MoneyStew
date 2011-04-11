@@ -4,6 +4,9 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 	constructor: function(config) {
 		this.currentId = 0;
         this.transactions = [];
+		this.debts = 0.0;
+		this.payments = 0.0;
+		this.infoEl = null;
 		
 		var defConfig = {
 			title: "Expenses per month",
@@ -53,14 +56,32 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 	        store.on('update', this.updateMonthStore, this);
 	    }
 	    
-	    this.updateMonthStore(store);
+	    //this.updateMonthStore(store);
 	},
 	
 	updateMonthStore: function(store) {
+		console.log("piechart",this);
 		this.currentId = 0;
+		this.debts = 0;
+		this.income = 0.0;
         this.transactions = [];
         store.each(this._generateItems, this);
+		this.updateInfoEl();
         this.store.loadData(this.transactions);
+	},
+	
+	setInfoElement: function(el){
+		this.infoEl = el;
+	},
+	
+	updateInfoEl: function(){
+		if(this.infoEl != null){
+			var fin = this.income + this.debts;
+			var htm = "<div class='stats'><div class='income-label'>Income: <span class='income value'>"+this.income+"</span></div>";
+			htm += "<div class='debt-label' style=''>Debts: <span class='debts value'>"+this.debts+"</span></div>";
+			htm += "<div class='debt-income'>"+fin+"</div></div>";
+			this.infoEl.dom.innerHTML = htm;
+		}
 	},
 	
 	_generateItems: function(record){
@@ -71,10 +92,6 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 		var rpt = record.data.repeat_amount;
 		var val = record.data.amount;
 		var interval = 0;
-		
-		if(val > 0){
-			return;
-		}
 		
 		switch (record.data.repeat) {
 			case "Monthly":
@@ -88,6 +105,13 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 				break;
 		}
 		var monthAmount = (( interval / rpt ) * val ) /12;
+		
+		if(val>0){
+			this.income += val;
+			return;
+		} else {
+			this.debts += val;
+		}
 		
 		var item = {
 			name: record.data.name,
