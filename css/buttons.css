@@ -149,5 +149,17 @@
 	font: normal 11px arial,tahoma, helvetica, sans-serif;
 }
 
+.formtip {
+	background-image:url(../img/silk/icons/help.png) !important;
+	float:right;
+	min-width:16px;
+	height:16px;
+	background-repeat:no-repeat;
+	margin: 0 0 0 2px;
+/*	margin: 1px 5px 0 2px; */
+	cursor:pointer;
+	overflow:hidden;
+}
+
 
 /* eof */ 

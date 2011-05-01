@@ -26,6 +26,7 @@ MS.App = Ext.extend(Ext.util.Observable, {
 			store:this.ledgerStore
 		});
         this.viewport.on('nav', this.dispatch, this);	
+		this.ledgerStore.on('load',this._onStoreLoad,this);
         this.ledgerStore.load();
         this.initModules();
         this.dispatchAction('Ledger', 'ledgerPanel');
@@ -75,6 +76,14 @@ MS.App = Ext.extend(Ext.util.Observable, {
         this.windows[id] = new Ext.Window(config);
         this.windows[id].show();
         return this.windows[id];
-    }
+    },
+	
+	_onStoreLoad: function(store,records,options){
+		if(records.length == 0){
+			this.Ledger.showWizard();
+		}
+		
+		this.ledgerStore.un("load",this._onStoreLoad,this);
+	}
     
 });

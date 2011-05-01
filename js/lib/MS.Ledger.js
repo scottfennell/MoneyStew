@@ -61,11 +61,12 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 			,actions:[
 				{
 					iconCls:'icon-delete',
-					tooltip:'Open',
+					tooltip:'Delete this transaction and all transactions from this group',
 					qtip:"Delete Transaction"
 					
 				},{
 					 iconCls:'icon-edit',
+					 tooltip: "Edit all transactions in this group",
 					 qtip: 'Edit transaction'
 				}
 			]
@@ -149,7 +150,7 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 	                })
 	            }, checkColumn, 
 	            {
-					header: 'Amount',
+					header: 'Transaction Amount',
 	                width: 20,
 	                sortable: false,
 	                renderer: Ext.util.Format.usMoney,
@@ -162,7 +163,7 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 	                })
 	            },{
 					id: 'tcost',
-	                header: 'Balance',
+	                header: 'Projected Balance',
 	                width: 20,
 	                sortable: false,
 	                groupable: false,
@@ -221,9 +222,10 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
 					    fn:self.changeBalance,
 					    scope:self
 					}
-				}
+				},
+				qtip: "This should be your current bank account balance, this is used to calculate your projected balance"
 			},{
-				text:'Recaculate',
+				text:'Recalculate',
 			}],
 		    clicksToEdit: 1,
 		    trackMouseOver: false,
@@ -244,33 +246,37 @@ MS.Ledger = new Ext.extend(Ext.util.Observable,{
     },
 	
 	editForm : function(rec){	
-		var form = new MS.LedgerForm({
-		    record: rec
-		});
-		this.currentWindow = new Ext.Window({
+		this.currentWindow = new MS.LedgerForm({
 		    width:400,
 		    height:300,
-		    layout:'fit',
 		    title: 'Edit Transaction',
-		    items:[form]
+			record: rec
 		});
 		this.currentWindow.show();
-		form.on('save', this.saveAfterEdit, this)
+		this.currentWindow.on('save', this.saveAfterEdit, this)
     },
 
     addFormClick : function(){
-		var form = new MS.LedgerForm();
-		this.currentWindow = new Ext.Window({
+		this.currentWindow = new MS.LedgerForm({
 		    width:400,
 		    height:300,
-		    layout:'fit',
 		    title: 'Add New Transaction',
-		    items:[form]
 		});
 	
 		this.currentWindow.show();
-		form.on('save', this.saveAfterAdd, this)
+		this.currentWindow.on('save', this.saveAfterAdd, this)
     }, 
+	
+	showWizard: function() {
+		this.currentWindow = new MS.LedgerForm({
+			width:400,
+			height:350,
+			title: "Welcome to MoneyStew",
+			wizard: true
+		});
+		this.currentWindow.show();
+		this.currentWindow.on('save', this.saveAfterAdd,this);
+	},
 	
 	saveAfterEdit : function(data){
 		//record should be updated
