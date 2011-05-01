@@ -60,7 +60,6 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 	},
 	
 	updateMonthStore: function(store) {
-		console.log("piechart",this);
 		this.currentId = 0;
 		this.debts = 0;
 		this.income = 0.0;
@@ -92,6 +91,9 @@ MS.PieChart = Ext.extend(Ext.chart.PieChart, {
 		var rpt = record.data.repeat_amount;
 		var val = record.data.amount;
 		var interval = 0;
+		if(!Ext.isNumber){
+			val = parseFloat(val);
+		}
 		
 		switch (record.data.repeat) {
 			case "Monthly":
