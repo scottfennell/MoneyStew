@@ -66,12 +66,13 @@ MS.Viewport = Ext.extend(Ext.Viewport,{
 					new MS.PieChart({
 						id: "piechart",
 						store: config.store,
-						anchor: "100% 50%"
+						anchor: "100% -80"
 					}),
 					{
+						title: "Montly Debt to Income",
 						id: "stasis",	
-						anchor: "100% 50%",
-						html: "Something<br/>something<br/>something<br/>"
+						anchor: "100%",
+						border: false
 					}
 				]
 			}]
@@ -89,10 +90,7 @@ MS.Viewport = Ext.extend(Ext.Viewport,{
 		
 		this.pie = Ext.getCmp("piechart");
 		this.stasis = Ext.getCmp("stasis");
-		console.log("Stasis",this.stasis);
 		this.pie.setInfoElement(this.stasis.body);
-		
-		
 	},
 
     fireNav : function(n){        
