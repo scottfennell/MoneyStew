@@ -16,7 +16,7 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	
 	constructor : function(config){
 		this.startDate = new Date();
-		this.endDate = this.startDate.add(Date.MONTH, 1);
+		this.endDate = this.startDate.add(Date.MONTH, 3);
 		
 		var defConfig = {
 			reader: new Ext.data.JsonReader({
