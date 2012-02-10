@@ -1,7 +1,7 @@
 {
   "name": "MoneyStew",
   "description": "Need help managing your personal finances? Organize your bills, see your upcoming bills, visualize your financial future.",
-  "version": "2",
+  "version": "3",
   "app": {
     "urls": [
       "http://money-stew.appspot.com/"
