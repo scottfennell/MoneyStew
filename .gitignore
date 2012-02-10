@@ -1,5 +1,6 @@
 \.tmp*
-*\.pyc/js_libs
+*\.pyc
+/js_libs
 /nbproject/private/
 *.pyc
 /nbproject/*
