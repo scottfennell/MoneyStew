@@ -135,17 +135,27 @@ fieldset {
 	display:block; height:0; clear:both; visibility:hidden;
 }
 
+/* --------- Design ---------- */
+
 h2 { 
 	font-family: 'Cabin', arial, serif; 
 	margin-bottom:0.5em;
-	margin-top:0.2em;
+	margin-top:0;
+	text-shadow: 0px 2px 3px #555;
+	background:#424242;
+	padding:10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
+
+
 
 .head {
 	background:#99faff;
 	border-bottom:1px solid #68aaad;
 	padding: 10px;
 }
+
 .head a {
 	float:right;
 }
@@ -155,18 +165,53 @@ h2 {
 	margin-left:auto;
 	margin-right:auto;
 }
+
 .section {
 	margin:1em 0 1em 0;
 	background:#d8e1e1;
-	border-bottom:1px solid #68aaad;
-	border-top:1px solid #68aaad;
-	padding: 20px;
 	color:#171717;
+	-webkit-box-shadow: 0px 2px 3px #555;
+	-moz-box-shadow: 0px 2px 3px #555;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	padding-bottom: 10px;
+	
 }
 
 .section p {
-	margin-top:10px;
-	margin-bottom:10px;
+	margin: 10px;
+}
+.header h1 {
+	font-size:24px;
+}
+
+.intro {
+	
+	padding:15px;
+	margin:10px 0;
+	background:#a7a7a7;
+	border-radius: 10px;
+	
+}
+.intro h1 {
+	color:#4a4a4a;
+	border-bottom: 1px solid #c4c4c4;
+}
+.intro h3 {
+	font-size:26px;
+}
+
+.quicktext {
+	float:left;
+	width: 450px;
+	padding-right:25px;
+	color:#1c1c1c;
+	text-shadow: 0px 1px 0px #dcdcdc;
+	border-right: 1px solid #c4c4c4;
+}
+
+#auto_slide_show {
+	float:right;
 }
 
 .section.login {
@@ -174,18 +219,37 @@ h2 {
 	font-weight:bold;
 }
 
-.foot {
-	margin:1em 0 1em 0;
-	background:#d8e1e1;
-	border-bottom:1px solid #68aaad;
-	border-top:1px solid #68aaad;
-	padding: 20px;
-}
-
 .logo {
 	float:left;
+	margin-left:-10px;
+	margin-top:-15px;
+	width:64px;
+	height:64px;
 }
 
-.tagline {
-	color:#550017;
+.headlog {
+	text-shadow: 0px 2px 3px #555;
+	padding:5px;
+	border-radius: 5px;
+	border: 1px solid #000;
+	margin:4px;
+	/* box-shadow: 0px 2px 10px #555; */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* webkit */
 }
+
+.headlog a {
+	font-family: 'Cabin', arial, serif;
+	font-size: 1.7em;
+	font-weight:bold;
+	color:#730600;
+	text-decoration:none;
+	display:block;
+	text-align:center;
+}
+.headlog:hover {
+	box-shadow: 0px 2px 3px #555;
+}
+.headlog a:hover {
+	text-decoration:underline;
+}
+

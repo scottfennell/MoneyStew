@@ -1,6 +1,7 @@
 \.tmp*
 *\.pyc
 /js_libs
-/nbproject/private/
+/nbproject/private/*
 *.pyc
 /nbproject/*
+.pydevproject

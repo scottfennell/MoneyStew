@@ -21,13 +21,15 @@ MS.App = Ext.extend(Ext.util.Observable, {
     start: function(){
 		Ext.QuickTips.init();
         //this.viewport = new Ext.Viewport(MS.viewport);
-        this.viewport = new MS.viewport();
-        this.viewport.on('nav', this.dispatch, this);	
 		this.ledgerStore = new MS.LedgerStore();
+        this.viewport = new MS.Viewport({
+			store:this.ledgerStore
+		});
+        this.viewport.on('nav', this.dispatch, this);	
+		this.ledgerStore.on('load',this._onStoreLoad,this);
         this.ledgerStore.load();
         this.initModules();
         this.dispatchAction('Ledger', 'ledgerPanel');
-		this.viewport.addChart(this.Ledger.datedata);
     },
     
     initModules: function(){
@@ -37,10 +39,9 @@ MS.App = Ext.extend(Ext.util.Observable, {
             store: this.ledgerStore
         });
 		
-        //this.Schema = new MS.Schema({parent:this});
     },
+	
     dispatchAction: function(module, action){
-		console.log("dispatch",module, action);
         if (this[module] && this[module][action]) {
             this[module][action]();
         } else {
@@ -75,6 +76,14 @@ MS.App = Ext.extend(Ext.util.Observable, {
         this.windows[id] = new Ext.Window(config);
         this.windows[id].show();
         return this.windows[id];
-    }
+    },
+	
+	_onStoreLoad: function(store,records,options){
+		if(records.length == 0){
+			this.Ledger.showWizard();
+		}
+		
+		this.ledgerStore.un("load",this._onStoreLoad,this);
+	}
     
 });

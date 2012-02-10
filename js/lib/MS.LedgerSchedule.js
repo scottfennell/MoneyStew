@@ -15,9 +15,8 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	
 	
 	constructor : function(config){
-		console.log("Constructing new LedgerSchedule store", config);
 		this.startDate = new Date();
-		this.endDate = this.startDate.add(Date.MONTH, 1);
+		this.endDate = this.startDate.add(Date.MONTH, 3);
 		
 		var defConfig = {
 			reader: new Ext.data.JsonReader({
@@ -56,8 +55,23 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	},
 	
 	_generateDateItems: function(record){
-		
 		var interval = this._getInterval(record);
+		if(record.data.repeat == "Semi-Monthly"){
+			var extra = record.copy();
+			Ext.data.Record.id(extra);
+			extra.data.repeat = "Monthly";
+
+			interval = {
+				repeat: Date.MONTH,
+				amount: 1
+			}
+			
+			sd = Date.parseDate(record.data.start_date, "m/d/Y");
+			sd = sd.add(Date.DAY,14);
+			extra.data.start_date = sd.format('m/d/Y');
+			this._generateDateItems(extra);
+		}
+		
 		var record_start = record.data.start_date;
 		//Convert a string date to a valid date
 		if(!Ext.isDate(record_start)){
