@@ -56,7 +56,9 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 	
 	_generateDateItems: function(record){
 		var interval = this._getInterval(record);
+                
 		if(record.data.repeat == "Semi-Monthly"){
+                        //Add a second object that is offset by 14 days
 			var extra = record.copy();
 			Ext.data.Record.id(extra);
 			extra.data.repeat = "Monthly";
@@ -65,10 +67,8 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 				repeat: Date.MONTH,
 				amount: 1
 			}
-			
-			sd = Date.parseDate(record.data.start_date, "m/d/Y");
-			sd = sd.add(Date.DAY,14);
-			extra.data.start_date = sd.format('m/d/Y');
+                        var dt = record.data.start_date.add(Date.DAY,14);
+			extra.data.start_date = dt; //sd.format('m/d/Y');
 			this._generateDateItems(extra);
 		}
 		
@@ -85,7 +85,7 @@ MS.LedgerSchedule = Ext.extend(Ext.data.GroupingStore, {
 			var count = 0
 			while (rec_dates.between(this.startDate, this.endDate)) {
 				if(count>10){
-					console.log("Would have duplicated more than ten times, breaking", rec_dates, interval, this.startDate, this.endDate);
+					console.warn("Would have duplicated more than ten times, breaking", rec_dates, interval, this.startDate, this.endDate);
 					break;
 				}
 	            this.currentTotal += record.data.amount;
